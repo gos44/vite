@@ -12,7 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Registrar middleware de ruta
+        $middleware->alias([
+            'EnsureTokenIsValid' => \App\Http\Middleware\EnsureTokenIsValid::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
